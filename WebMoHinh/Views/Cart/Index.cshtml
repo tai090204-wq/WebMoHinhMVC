@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WebMoHinh.Models.CartItem>
+
+@{
+    decimal total = 0;
+}
+
+<h2>Giỏ Hàng</h2>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Ảnh</th>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>SL</th>
+            <th>Thành Tiền</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            decimal subTotal =
+            item.Quantity * item.Product.Price;
+
+            total += subTotal;
+
+            <tr>
+
+                <td width="120">
+                    <img src="@item.Product.ImageUrl"
+                         width="100" />
+                </td>
+
+                <td>
+                    @item.Product.Name
+                </td>
+
+                <td>
+                    @item.Product.Price.ToString("N0")
+                </td>
+
+                <td>
+
+                    <a asp-action="Decrease"
+                       asp-route-id="@item.Id"
+                       class="btn btn-danger">
+                        -
+                    </a>
+
+                    @item.Quantity
+
+                    <a asp-action="Increase"
+                       asp-route-id="@item.Id"
+                       class="btn btn-success">
+                        +
+                    </a>
+
+                </td>
+
+                <td>
+                    @subTotal.ToString("N0")
+                </td>
+
+                <td>
+
+                    <a asp-action="Remove"
+                       asp-route-id="@item.Id"
+                       class="btn btn-danger">
+                        Xóa
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<div class="text-end">
+
+    <h3>
+        Tổng cộng:
+        <span class="text-danger">
+            @total.ToString("N0") VNĐ
+        </span>
+    </h3>
+
+</div>
+
+<div class="text-end">
+
+    <a asp-controller="Order"
+       asp-action="Checkout"
+       class="btn btn-primary btn-lg">
+
+        Thanh Toán
+
+    </a>
+
+</div>

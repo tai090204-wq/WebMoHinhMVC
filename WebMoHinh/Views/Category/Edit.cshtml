@@ -1,0 +1,25 @@
+﻿@model WebMoHinh.Models.Category
+
+<h2>Cập Nhật Danh Mục</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary">
+        Cập Nhật
+    </button>
+
+</form>

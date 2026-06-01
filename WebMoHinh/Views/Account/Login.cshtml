@@ -1,0 +1,47 @@
+﻿@model WebMoHinh.ViewModels.LoginViewModel
+
+<div class="row justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                Đăng Nhập
+            </div>
+
+            <div class="card-body">
+
+                <form asp-action="Login">
+
+                    <div class="mb-3">
+
+                        <label>Tài Khoản</label>
+
+                        <input asp-for="UserName"
+                               class="form-control" />
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label>Mật Khẩu</label>
+
+                        <input asp-for="Password"
+                               class="form-control" />
+
+                    </div>
+
+                    <button class="btn btn-primary w-100">
+                        Đăng Nhập
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

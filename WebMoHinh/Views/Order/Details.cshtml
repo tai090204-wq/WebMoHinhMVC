@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebMoHinh.Models.OrderDetail>
+
+<h2>Chi Tiết Đơn Hàng</h2>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>Sản Phẩm</th>
+            <th>Giá</th>
+            <th>SL</th>
+            <th>Thành Tiền</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @item.Product.Name
+                </td>
+
+                <td>
+                    @item.Price.ToString("N0")
+                </td>
+
+                <td>
+                    @item.Quantity
+                </td>
+
+                <td>
+                    @((item.Price * item.Quantity)
+                        .ToString("N0"))
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

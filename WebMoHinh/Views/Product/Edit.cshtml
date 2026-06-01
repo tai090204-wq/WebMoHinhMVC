@@ -1,0 +1,50 @@
+﻿@model WebMoHinh.Models.Product
+
+<h2>Cập Nhật Sản Phẩm</h2>
+
+<form asp-action="Edit"
+      enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <input asp-for="Name"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <input asp-for="Price"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <input asp-for="Quantity"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <select asp-for="CategoryId"
+                asp-items="ViewBag.CategoryId"
+                class="form-select">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <img src="@Model.ImageUrl"
+             width="150">
+    </div>
+
+    <div class="mb-3">
+        <input asp-for="ImageFile"
+               class="form-control">
+    </div>
+
+    <button class="btn btn-primary">
+        Cập Nhật
+    </button>
+</form>

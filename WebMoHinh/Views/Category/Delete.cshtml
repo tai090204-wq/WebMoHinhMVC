@@ -1,0 +1,23 @@
+﻿@model WebMoHinh.Models.Category
+
+<h2>Xóa Danh Mục</h2>
+
+<div class="alert alert-danger">
+    Bạn có chắc muốn xóa
+    <strong>@Model.Name</strong> ?
+</div>
+
+<form asp-action="Delete">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button class="btn btn-danger">
+        Xóa
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Hủy
+    </a>
+
+</form>

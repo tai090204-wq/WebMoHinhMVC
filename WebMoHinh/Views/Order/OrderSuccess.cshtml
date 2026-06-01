@@ -1,0 +1,34 @@
+﻿@model WebMoHinh.Models.Order
+
+<div class="alert alert-success">
+
+    <h2>Đặt Hàng Thành Công</h2>
+
+    <hr />
+
+    <p>
+        Mã đơn hàng:
+        <strong>#@Model.Id</strong>
+    </p>
+
+    <p>
+        Tổng tiền:
+        <strong class="text-danger">
+            @Model.TotalAmount.ToString("N0") VNĐ
+        </strong>
+    </p>
+
+    <p>
+        Ngày đặt:
+        @Model.OrderDate
+    </p>
+
+</div>
+
+<a asp-controller="Order"
+   asp-action="MyOrders"
+   class="btn btn-primary">
+
+    Xem Đơn Hàng
+
+</a>
