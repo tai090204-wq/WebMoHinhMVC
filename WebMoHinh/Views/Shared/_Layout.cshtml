@@ -20,7 +20,7 @@
             <a class="navbar-brand fw-bold"
                asp-controller="Home"
                asp-action="Index">
-                🏆 Web Mô Hình
+                🏆 Thành Tài
             </a>
 
             <button class="navbar-toggler"
@@ -92,11 +92,29 @@
                             </a>
                         </li>
 
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Order"
+                                   asp-action="Dashboard">
+                                    📊 Dashboard
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Order"
+                                   asp-action="Report">
+                                    📑 Báo Cáo
+                                </a>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <a class="nav-link text-warning fw-bold"
-                               asp-controller="Order"
-                               asp-action="Dashboard">
-                                📊 Dashboard
+                               asp-controller="UserRole"
+                               asp-action="Index">
+                                👥 Phân Quyền
                             </a>
                         </li>
                     }

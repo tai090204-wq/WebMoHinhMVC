@@ -1,0 +1,81 @@
+﻿@model List<WebMoHinh.Models.UserRoleViewModel>
+
+@{
+    ViewData["Title"] = "Phân quyền";
+    var roles = ViewBag.Roles as List<string>;
+}
+
+<h2 class="mb-4">
+    Quản lý phân quyền
+</h2>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Tài khoản</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Quyền hiện tại</th>
+            <th>Đổi quyền</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <form asp-action="UpdateRole" method="post">
+
+                    <input type="hidden"
+                           name="userId"
+                           value="@item.UserId" />
+
+                    <td>@item.UserName</td>
+
+                    <td>@item.FullName</td>
+
+                    <td>@item.Email</td>
+
+                    <td>
+                        <span class="badge bg-primary">
+                            @item.Role
+                        </span>
+                    </td>
+
+                    <td>
+                        <div class="d-flex gap-2">
+
+                            <select name="role"
+                                    class="form-select">
+
+                                @foreach (var role in roles)
+                                {
+                                    if (role == item.Role)
+                                    {
+                                        <option selected>
+                                            @role
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option>
+                                            @role
+                                        </option>
+                                    }
+                                }
+
+                            </select>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+                                Lưu
+                            </button>
+
+                        </div>
+                    </td>
+
+                </form>
+            </tr>
+        }
+    </tbody>
+</table>

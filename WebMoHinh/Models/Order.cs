@@ -12,6 +12,8 @@
 
         public string Status { get; set; }
 
+        public ApplicationUser? User { get; set; }
+
         public ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }

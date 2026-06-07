@@ -72,8 +72,8 @@ namespace WebMoHinh.Controllers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(
-                    user,
-                    model.Role);
+    user,
+    "Customer");
 
                 await _signInManager.SignInAsync(
                     user,

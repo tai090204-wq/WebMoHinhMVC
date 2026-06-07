@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebMoHinh")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f8041df149eb017e8661cc435b00b2b9de7f646")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebMoHinh")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebMoHinh")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

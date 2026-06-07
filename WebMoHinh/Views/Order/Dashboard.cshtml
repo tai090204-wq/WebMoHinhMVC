@@ -1,41 +1,178 @@
-﻿<h2>Dashboard Admin</h2>
+﻿@model WebMoHinh.Models.DashboardViewModel
 
-<div class="row">
+@{
+    ViewData["Title"] = "Dashboard";
+}
 
-    <div class="col-md-3">
-        <div class="card text-center">
+<h2 class="mb-4">
+    📊 Dashboard Thống Kê
+</h2>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card border-0 shadow text-center">
             <div class="card-body">
-                <h3>@ViewBag.TotalRevenue.ToString("N0")</h3>
-                <p>Doanh Thu</p>
+                <h5 class="text-secondary">
+                    Tổng Khách Hàng
+                </h5>
+
+                <h1 class="text-primary">
+                    @Model.TotalCustomers
+                </h1>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card text-center">
+    <div class="col-md-4">
+        <div class="card border-0 shadow text-center">
             <div class="card-body">
-                <h3>@ViewBag.TotalOrders</h3>
-                <p>Đơn Hàng</p>
+                <h5 class="text-secondary">
+                    Tổng Đơn Hàng
+                </h5>
+
+                <h1 class="text-success">
+                    @Model.TotalOrders
+                </h1>
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card text-center">
+    <div class="col-md-4">
+        <div class="card border-0 shadow text-center">
             <div class="card-body">
-                <h3>@ViewBag.TotalProducts</h3>
-                <p>Sản Phẩm</p>
-            </div>
-        </div>
-    </div>
+                <h5 class="text-secondary">
+                    Tổng Doanh Thu
+                </h5>
 
-    <div class="col-md-3">
-        <div class="card text-center">
-            <div class="card-body">
-                <h3>@ViewBag.TotalUsers</h3>
-                <p>Người Dùng</p>
+                <h1 class="text-danger">
+                    @Model.TotalRevenue.ToString("N0") VNĐ
+                </h1>
             </div>
         </div>
     </div>
 
 </div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                📦 Số lượng đơn hàng theo ngày
+            </div>
+
+            <div class="card-body">
+                <canvas id="orderChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card shadow mb-4">
+            <div class="card-header bg-success text-white">
+                💰 Doanh thu theo ngày
+            </div>
+
+            <div class="card-body">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header bg-dark text-white">
+        📋 Báo cáo nhanh
+    </div>
+
+    <table class="table table-bordered mb-0">
+
+        <thead>
+            <tr>
+                <th>Chỉ số</th>
+                <th>Giá trị</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>Tổng khách hàng</td>
+                <td>@Model.TotalCustomers</td>
+            </tr>
+
+            <tr>
+                <td>Tổng đơn hàng</td>
+                <td>@Model.TotalOrders</td>
+            </tr>
+
+            <tr>
+                <td>Tổng doanh thu</td>
+                <td class="text-danger fw-bold">
+                    @Model.TotalRevenue.ToString("N0") VNĐ
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const labels =
+        @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Labels));
+
+        const orderData =
+        @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.OrderCounts));
+
+        const revenueData =
+        @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Revenues));
+
+        new Chart(
+        document.getElementById("orderChart"),
+        {
+        type: "bar",
+        data:
+        {
+        labels: labels,
+        datasets:
+        [{
+        label: "Số đơn hàng",
+        data: orderData,
+        borderWidth: 1
+        }]
+        }
+        });
+
+        new Chart(
+        document.getElementById("revenueChart"),
+        {
+        type: "line",
+        data:
+        {
+        labels: labels,
+        datasets:
+        [{
+        label: "Doanh thu",
+        data: revenueData,
+        fill: false,
+        tension: 0.3
+        }]
+        }
+        });
+
+    </script>
+}
