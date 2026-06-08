@@ -35,37 +35,126 @@
 
 <div class="row mb-4">
 
-    <div class="col-md-4">
+    ```
+    <div class="col-md-2">
         <div class="card text-center shadow">
             <div class="card-body">
-                <h5>Doanh Thu</h5>
-                <h3 class="text-danger">
-                    @Model.TotalRevenue.ToString("N0") VNĐ
-                </h3>
+                <h5>Tổng Doanh Thu</h5>
+                <h3>@Model.TotalRevenue.ToString("N0")</h3>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="card text-center shadow">
             <div class="card-body">
-                <h5>Đơn Hàng</h5>
-                <h3 class="text-success">
-                    @Model.TotalOrders
-                </h3>
+                <h5>Tổng Đơn Hàng</h5>
+                <h3>@Model.TotalOrders</h3>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="card text-center shadow">
             <div class="card-body">
-                <h5>Khách Hàng</h5>
-                <h3 class="text-primary">
-                    @Model.TotalCustomers
-                </h3>
+                <h5>Tổng Khách Hàng</h5>
+                <h3>@Model.TotalCustomers</h3>
             </div>
         </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5>Tổng Sản Phẩm</h5>
+                <h3>@Model.TotalProducts</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h5>Tổng Số Lượng</h5>
+                <h3>@Model.TotalQuantitySold</h3>
+            </div>
+        </div>
+    </div>
+    ```
+
+</div>
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header">
+                Top 5 sản phẩm bán chạy nhất
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.TopBestProducts)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td>@item.QuantitySold</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header">
+                Top 5 sản phẩm bán ít nhất
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.TopWorstProducts)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td>@item.QuantitySold</td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>

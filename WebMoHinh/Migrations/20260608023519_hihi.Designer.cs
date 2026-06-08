@@ -12,8 +12,8 @@ using WebMoHinh.Data;
 namespace WebMoHinh.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260606073451_AddOrderUserRelation")]
-    partial class AddOrderUserRelation
+    [Migration("20260608023519_hihi")]
+    partial class hihi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -297,8 +297,17 @@ namespace WebMoHinh.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("DeliveryTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("SecondaryPhone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()

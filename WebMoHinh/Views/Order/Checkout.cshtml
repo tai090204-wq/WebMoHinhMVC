@@ -1,0 +1,45 @@
+﻿@model WebMoHinh.ViewModels.CheckoutViewModel
+
+<div class="card shadow">
+
+    <div class="card-header bg-success text-white">
+        Thông Tin Đặt Hàng
+    </div>
+
+    <div class="card-body">
+
+        <form asp-action="Checkout" method="post">
+
+            <div class="mb-3">
+                <label>Ghi chú</label>
+
+                <textarea asp-for="Note"
+                          class="form-control">
+                </textarea>
+            </div>
+
+            <div class="mb-3">
+                <label>SĐT phụ</label>
+
+                <input asp-for="SecondaryPhone"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label>Giờ giao hàng</label>
+
+                <input asp-for="DeliveryTime"
+                       type="datetime-local"
+                       class="form-control" />
+            </div>
+
+            <button type="submit"
+                    class="btn btn-success">
+                Xác Nhận Đặt Hàng
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebMoHinh.Models.Favorite>
+
+<h2>Sản Phẩm Yêu Thích</h2>
+
+<table class="table table-bordered">
+
+    
+    <thead>
+        <tr>
+            <th>Tên Sản Phẩm</th>
+            <th>Giá</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+
+                <td>
+                    @item.Product.Price.ToString("N0") VNĐ
+                </td>
+
+                <td>
+                    <a asp-action="Remove"
+                       asp-route-id="@item.Id"
+                       class="btn btn-danger">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+    
+
+</table>

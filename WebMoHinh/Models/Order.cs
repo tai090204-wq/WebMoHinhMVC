@@ -12,6 +12,13 @@
 
         public string Status { get; set; }
 
+        // Thông tin bổ sung
+        public string? Note { get; set; }
+
+        public string? SecondaryPhone { get; set; }
+
+        public DateTime? DeliveryTime { get; set; }
+
         public ApplicationUser? User { get; set; }
 
         public ICollection<OrderDetail>? OrderDetails { get; set; }

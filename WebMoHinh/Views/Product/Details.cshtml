@@ -2,6 +2,7 @@
 
 <div class="row">
 
+    
     <div class="col-md-5">
         <img src="@Model.ImageUrl"
              class="img-fluid rounded shadow">
@@ -10,6 +11,10 @@
     <div class="col-md-7">
 
         <h2>@Model.Name</h2>
+
+        <p class="text-secondary">
+            👁️ Lượt xem: @Model.ViewCount
+        </p>
 
         <h3 class="text-danger">
             @Model.Price.ToString("N0") VNĐ
@@ -23,5 +28,11 @@
         </p>
 
     </div>
+    <a asp-controller="Favorite"
+       asp-action="Add"
+       asp-route-id="@Model.Id"
+       class="btn btn-danger">
+        ❤️ Yêu Thích
+    </a>
 
 </div>

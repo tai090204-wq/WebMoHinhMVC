@@ -32,18 +32,26 @@ namespace WebMoHinh.Controllers
         }
 
         // DETAIL
+       
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var product = await _context.Products
-                .Include(x => x.Category)
-                .FirstOrDefaultAsync(x => x.Id == id);
+            .Include(x => x.Category)
+            .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (product == null)
+
+if (product == null)
                 return NotFound();
 
+            product.ViewCount++;
+
+            await _context.SaveChangesAsync();
+
             return View(product);
-        }
+
+
+}
 
         // CREATE
         [Authorize(Roles = "Admin,Employee")]

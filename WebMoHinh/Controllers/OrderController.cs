@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebMoHinh.Data;
 using WebMoHinh.Models;
+using WebMoHinh.ViewModels;
 
 namespace WebMoHinh.Controllers
 {
@@ -101,6 +102,24 @@ namespace WebMoHinh.Controllers
                     .Select(x => x.UserId)
                     .Distinct()
                     .CountAsync();
+            model.TotalProducts =
+await _context.OrderDetails
+.Include(x => x.Order)
+.Where(x =>
+x.Order.OrderDate >= startDate &&
+x.Order.OrderDate <= endDate)
+.Select(x => x.ProductId)
+.Distinct()
+.CountAsync();
+
+            model.TotalQuantitySold =
+            await _context.OrderDetails
+            .Include(x => x.Order)
+            .Where(x =>
+            x.Order.OrderDate >= startDate &&
+            x.Order.OrderDate <= endDate)
+            .SumAsync(x => (int?)x.Quantity) ?? 0;
+
 
             model.TopBestProducts =
                 await _context.OrderDetails
@@ -221,15 +240,26 @@ namespace WebMoHinh.Controllers
         // ==========================
         // THANH TOÁN
         // ==========================
+        [HttpGet]
         [Authorize(Roles = "Customer,Admin")]
-        public async Task<IActionResult> Checkout()
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Customer,Admin")]
+        public async Task<IActionResult> Checkout(
+        CheckoutViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
 
-            var cartItems = await _context.CartItems
-                .Include(x => x.Product)
-                .Where(x => x.UserId == user.Id)
-                .ToListAsync();
+
+var cartItems = await _context.CartItems
+    .Include(x => x.Product)
+    .Where(x => x.UserId == user.Id)
+    .ToListAsync();
 
             if (!cartItems.Any())
                 return RedirectToAction("Index", "Cart");
@@ -242,7 +272,11 @@ namespace WebMoHinh.Controllers
                 UserId = user.Id,
                 OrderDate = DateTime.Now,
                 TotalAmount = total,
-                Status = "Pending"
+                Status = "Pending",
+
+                Note = model.Note,
+                SecondaryPhone = model.SecondaryPhone,
+                DeliveryTime = model.DeliveryTime
             };
 
             _context.Orders.Add(order);
@@ -271,7 +305,9 @@ namespace WebMoHinh.Controllers
             return RedirectToAction(
                 nameof(OrderSuccess),
                 new { id = order.Id });
-        }
+
+
+}
 
         // ==========================
         // ĐẶT HÀNG THÀNH CÔNG

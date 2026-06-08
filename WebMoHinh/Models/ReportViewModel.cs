@@ -11,6 +11,10 @@
         public int TotalOrders { get; set; }
 
         public int TotalCustomers { get; set; }
+        public int TotalProducts { get; set; }
+
+        public int TotalQuantitySold { get; set; }
+
 
         public List<ProductStatisticVM> TopBestProducts { get; set; }
             = new();

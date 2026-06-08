@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebMoHinh.Migrations
 {
     /// <inheritdoc />
-    public partial class AddOrderUserRelation : Migration
+    public partial class TenMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

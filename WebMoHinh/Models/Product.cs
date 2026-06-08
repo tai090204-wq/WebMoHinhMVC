@@ -27,5 +27,7 @@ namespace WebMoHinh.Models
 
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
+
+        public int ViewCount { get; set; } = 0;
     }
 }
